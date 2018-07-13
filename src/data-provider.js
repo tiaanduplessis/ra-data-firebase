@@ -132,7 +132,7 @@ export default (options = {}) => {
       case GET_LIST:
       case GET_MANY:
       case GET_MANY_REFERENCE:
-        result = await getMany(params, resourceName, resourcesData[resourceName])
+        result = getMany(params, resourceName, resourcesData[resourceName])
         return result
 
       case GET_ONE:
