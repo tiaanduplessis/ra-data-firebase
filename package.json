@@ -5,13 +5,12 @@
   "source": "src/index.js",
   "main": "dist/ra-data-firebase.js",
   "module": "dist/ra-data-firebase.m.js",
-  "browser": "dist/ra-data-firebase.umd.js",
   "repository": "https://github.com/tiaanduplessis/ra-data-firebase",
   "author": "Tiaan du Plessis",
   "license": "MIT",
   "scripts": {
     "lint": "standard --fix",
-    "build": "microbundle --compress false --target browser"
+    "build": "microbundle --compress false"
   },
   "keywords": [
     "react",
