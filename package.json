@@ -2,13 +2,16 @@
   "name": "ra-data-firebase",
   "version": "1.0.0",
   "description": "Firebase data provider for React Admin",
-  "main": "index.js",
-  "module": "index.js",
+  "source": "src/index.js",
+  "main": "dist/ra-data-firebase.js",
+  "module": "dist/ra-data-firebase.m.js",
+  "browser": "dist/ra-data-firebase.umd.js",
   "repository": "https://github.com/tiaanduplessis/ra-data-firebase",
   "author": "Tiaan du Plessis",
   "license": "MIT",
   "scripts": {
-    "lint": "standard --fix"
+    "lint": "standard --fix",
+    "build": "microbundle"
   },
   "keywords": [
     "react",
@@ -25,6 +28,10 @@
     "react-admin": "*"
   },
   "devDependencies": {
+    "microbundle": "^0.5.1",
     "standard": "^11.0.1"
+  },
+  "standard": {
+    "ignore": ["dist"]
   }
 }
