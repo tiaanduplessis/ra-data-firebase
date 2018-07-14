@@ -326,11 +326,13 @@ function dataProvider (options) {
         });
     });
     return function (type, resourceName, params) { return new Promise(function ($return, $error) {
-        var result;
+        var uploads, currentData, uploadResults;
+        var result, itemId;
         debug && console.log(type, resourceName, params);
         return resourcesStatus[resourceName].then((function ($await_4) {
             try {
                 result = null;
+                itemId = null;
                 switch (type) {
                     case reactAdmin.GET_LIST:
                     case reactAdmin.GET_MANY:
@@ -358,8 +360,7 @@ function dataProvider (options) {
                         }, $error);
                     case reactAdmin.UPDATE:
                     case reactAdmin.CREATE:
-                        shouldCreateUser = admin && admin.path === resourceName && type === reactAdmin.CREATE && params.data && params.data.email && params.data.password && admin.validate(params.data);
-                        if (shouldCreateUser) {
+                        if (admin && admin.path === resourceName && type === reactAdmin.CREATE && params.data && params.data.email && params.data.password && admin.validate(params.data)) {
                             var $Try_1_Post = (function () {
                                 try {
                                     return $If_3.call(this);
