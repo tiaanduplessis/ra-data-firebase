@@ -1,6 +1,6 @@
 {
   "name": "ra-data-firebase",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "Firebase data provider for React Admin",
   "source": "src/index.js",
   "main": "dist/ra-data-firebase.js",
