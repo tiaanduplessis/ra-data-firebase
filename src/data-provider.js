@@ -128,6 +128,7 @@ export default (options = {}) => {
     debug && console.log(type, resourceName, params)
     await resourcesStatus[resourceName]
     let result = null
+    let itemId = null
     switch (type) {
       case GET_LIST:
       case GET_MANY:
@@ -147,14 +148,10 @@ export default (options = {}) => {
 
       case UPDATE:
       case CREATE:
-
-        let itemId
-
-        const shouldCreateUser = admin && admin.path === resourceName && type === CREATE && params.data && params.data.email && params.data.password && admin.validate(params.data)
-        if (shouldCreateUser) {
+        if (admin && admin.path === resourceName && type === CREATE && params.data && params.data.email && params.data.password && admin.validate(params.data)) {
           try {
-            const app = firebase.initializeApp(admin.config, 'user-admin')
-            const user = await app.auth().createUserWithEmailAndPassword(params.data.email, params.data.password)
+            let app = firebase.initializeApp(admin.config, 'user-admin')
+            let user = await app.auth().createUserWithEmailAndPassword(params.data.email, params.data.password)
             itemId = user.uid
             app.auth().signOut()
           } catch (error) {
@@ -164,13 +161,13 @@ export default (options = {}) => {
           itemId = getItemID(params, type, resourceName, resourcesPaths[resourceName], resourcesData[resourceName])
         }
 
-        const uploads = resourcesUploadFields[resourceName]
+        var uploads = resourcesUploadFields[resourceName]
           ? resourcesUploadFields[resourceName]
             .map(field => upload(field, params.data, itemId, resourceName, resourcesPaths[resourceName]))
           : []
 
-        const currentData = resourcesData[resourceName][itemId] || {}
-        const uploadResults = await Promise.all(uploads)
+        var currentData = resourcesData[resourceName][itemId] || {}
+        var uploadResults = await Promise.all(uploads)
 
         result = await save(itemId, params.data, currentData, resourceName, resourcesPaths[resourceName], firebaseSaveFilter, uploadResults, type === CREATE, metaFieldNames)
         return result
