@@ -137,7 +137,7 @@ export default (options = {}) => {
         return result
 
       case GET_ONE:
-        result = await getOne(params, resourceName, resourcesData[resourceName])
+        result = getOne(params, resourceName, resourcesData[resourceName])
         return result
 
       case DELETE:
