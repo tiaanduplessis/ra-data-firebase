@@ -340,19 +340,13 @@ function dataProvider (options) {
                         result = getMany(params, resourceName, resourcesData[resourceName]);
                         return $return(result);
                     case reactAdmin.GET_ONE:
-                        return getOne(params, resourceName, resourcesData[resourceName]).then(function ($await_5) {
-                            try {
-                                result = $await_5;
-                                return $return(result);
-                            } catch ($boundEx) {
-                                return $error($boundEx);
-                            }
-                        }, $error);
+                        result = getOne(params, resourceName, resourcesData[resourceName]);
+                        return $return(result);
                     case reactAdmin.DELETE:
                         uploadFields = resourcesUploadFields[resourceName] ? resourcesUploadFields[resourceName] : [];
-                        return del(params.id, resourceName, resourcesPaths[resourceName], uploadFields).then(function ($await_6) {
+                        return del(params.id, resourceName, resourcesPaths[resourceName], uploadFields).then(function ($await_5) {
                             try {
-                                result = $await_6;
+                                result = $await_5;
                                 return $return(result);
                             } catch ($boundEx) {
                                 return $error($boundEx);
@@ -378,9 +372,9 @@ function dataProvider (options) {
                             try {
                                 var app, user;
                                 app = firebase.initializeApp(admin.config, 'user-admin');
-                                return app.auth().createUserWithEmailAndPassword(params.data.email, params.data.password).then(function ($await_7) {
+                                return app.auth().createUserWithEmailAndPassword(params.data.email, params.data.password).then(function ($await_6) {
                                     try {
-                                        user = $await_7;
+                                        user = $await_6;
                                         itemId = user.uid;
                                         app.auth().signOut();
                                         return $Try_1_Post();
@@ -398,12 +392,12 @@ function dataProvider (options) {
                         function $If_3() {
                             uploads = resourcesUploadFields[resourceName] ? resourcesUploadFields[resourceName].map(function (field) { return upload(field, params.data, itemId, resourceName, resourcesPaths[resourceName]); }) : [];
                             currentData = resourcesData[resourceName][itemId] || {};
-                            return Promise.all(uploads).then(function ($await_8) {
+                            return Promise.all(uploads).then(function ($await_7) {
                                 try {
-                                    uploadResults = $await_8;
-                                    return save(itemId, params.data, currentData, resourceName, resourcesPaths[resourceName], firebaseSaveFilter, uploadResults, type === reactAdmin.CREATE, metaFieldNames).then(function ($await_9) {
+                                    uploadResults = $await_7;
+                                    return save(itemId, params.data, currentData, resourceName, resourcesPaths[resourceName], firebaseSaveFilter, uploadResults, type === reactAdmin.CREATE, metaFieldNames).then(function ($await_8) {
                                         try {
-                                            result = $await_9;
+                                            result = $await_8;
                                             return $return(result);
                                         } catch ($boundEx) {
                                             return $error($boundEx);
