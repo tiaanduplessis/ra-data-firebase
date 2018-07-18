@@ -141,7 +141,7 @@ export default (options = {}) => {
         return result
 
       case DELETE:
-        const uploadFields = resourcesUploadFields[resourceName] ? resourcesUploadFields[resourceName] : []
+        var uploadFields = resourcesUploadFields[resourceName] ? resourcesUploadFields[resourceName] : []
 
         result = await del(params.id, resourceName, resourcesPaths[resourceName], uploadFields)
         return result
