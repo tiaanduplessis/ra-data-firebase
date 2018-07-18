@@ -326,7 +326,7 @@ function dataProvider (options) {
         });
     });
     return function (type, resourceName, params) { return new Promise(function ($return, $error) {
-        var uploads, currentData, uploadResults;
+        var uploadFields, uploads, currentData, uploadResults;
         var result, itemId;
         debug && console.log(type, resourceName, params);
         return resourcesStatus[resourceName].then((function ($await_4) {
